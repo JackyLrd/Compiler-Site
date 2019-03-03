@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block title %}Profile{% endblock %}
+{% block header %}
+<h2>我的信息</h2>
+{% endblock %}
+{% block content %}
+<div>
+    <ul>
+        <li>
+            用户名：{{ user.username }}
+            <a class="btn btn-link float-xl-right btn-sm" href="{% url 'User:change_password' %}" role="button">修改密码</a>
+        </li>
+        <li>
+            邮箱：{{ user.email }}
+            <a class="btn btn-link float-xl-right btn-sm" href="{% url 'User:change_email' %}" role="button">编辑</a>
+        </li>
+    </ul>
+</div>
+{% endblock %}

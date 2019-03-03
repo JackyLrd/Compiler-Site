@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block title %}Change Password{% endblock %}
+{% block header %}
+<h2>修改邮箱</h2>
+{% endblock %}
+
+{% block content %}
+<form class="form" action="{% url 'User:change_password' %} " method="post">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <input type="submit" value="提交" />
+    <input type="hidden" name='next' value="{% url 'index' %}" />
+</form>
+{% endblock %}

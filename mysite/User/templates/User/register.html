@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block title %}Register{% endblock %}
+{% block content %}
+<form action="{% url 'User:register' %}" method="post">
+  <!-- 一定要加这句话！！ -->
+  {% csrf_token %}
+  {% bootstrap_form form %}
+  <p><input type="submit" name="submit" value="注册"> <input type='reset' name="reset" value="重置"> </p>
+</form>
+{% endblock %}
