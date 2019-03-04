@@ -1,6 +1,20 @@
 {% extends 'base.html' %}
 {% load bootstrap4 %}
-{% block title %}Index{% endblock %}
+
+{% block title %}
+首页
+{% endblock %}
+
+{% block header %}
+<div class="jumbotron">
+    {% if user.is_authenticated %}
+    <h2>欢迎，{{ user.username }}</h2>
+    {% else %}
+    <h2>欢迎</h2>
+    {% endif %}
+</div>
+{% endblock %}
+
 {% block content %}
-fuck you
+hi
 {% endblock %}

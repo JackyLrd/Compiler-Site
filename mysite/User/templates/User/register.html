@@ -1,11 +1,21 @@
 {% extends 'base.html' %}
 {% load bootstrap4 %}
-{% block title %}Register{% endblock %}
+
+{% block title %}
+用户注册
+{% endblock %}
+
+{% block header %}
+<div class="jumbotron">
+    <h2>用户注册</h2>
+</div>
+{% endblock %}
+
 {% block content %}
 <form action="{% url 'User:register' %}" method="post">
-  <!-- 一定要加这句话！！ -->
-  {% csrf_token %}
-  {% bootstrap_form form %}
-  <p><input type="submit" name="submit" value="注册"> <input type='reset' name="reset" value="重置"> </p>
+    {% csrf_token %}
+    {% bootstrap_form register_form %}
+    <button class="btn btn-primary btn-sm" type="submit">注册</button>
+    <button class="btn btn-primary btn-sm" type="reset">重置</button>
 </form>
 {% endblock %}

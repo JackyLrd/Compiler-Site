@@ -2,20 +2,20 @@
 {% load bootstrap4 %}
 
 {% block title %}
-修改密码
+修改个人资料
 {% endblock %}
 
 {% block header %}
 <div class="jumbotron">
-    <h2>修改密码</h2>
+    <h2>修改个人资料</h2>
 </div>
 {% endblock %}
 
 {% block content %}
-<form class="form" action="{% url 'User:change_password' %} " method="post">
+<form class="form" action="{% url 'User:change_profile' %} " method="post">
     {% csrf_token %}
-    {% bootstrap_form form %}
+    {% bootstrap_form change_profile_form %}
     <button class="btn btn-primary btn-sm" type="submit">提交</button>
-    <input type="hidden" name='next' value="{% url 'index' %}" />
+    <input type="hidden" name='next' value="{% url 'User:profile' %}"/>
 </form>
 {% endblock %}

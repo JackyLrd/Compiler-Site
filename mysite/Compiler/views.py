@@ -1,10 +1,10 @@
-from django.shortcuts import render
+import subprocess
 
 from django.http import HttpResponse
-import subprocess
 
 
 # Create your views here.
+
 
 def index(request):
     ret = subprocess.getstatusoutput("cd cpp_compile; make")
