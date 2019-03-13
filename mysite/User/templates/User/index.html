@@ -8,13 +8,17 @@
 {% block header %}
 <div class="jumbotron">
     {% if user.is_authenticated %}
-    <h2>欢迎，{{ user.username }}</h2>
+    <h2>欢迎来到Compiler Site，{{ user.username }}</h2>
     {% else %}
-    <h2>欢迎</h2>
+    <h2>欢迎来到Compiler Site，请登录后使用所有功能</h2>
     {% endif %}
 </div>
 {% endblock %}
 
 {% block content %}
-hi
+{% if user.is_authenticated %}
+
+{% else %}
+
+{% endif %}
 {% endblock %}

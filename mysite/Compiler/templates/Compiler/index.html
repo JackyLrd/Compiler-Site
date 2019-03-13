@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block title %}
+Compiler
+{% endblock %}
+
+{% block header %}
+<div class="jumbotron">
+    <h2>Compiler</h2>
+</div>
+{% endblock %}
+
+{% block content %}
+<a class="btn btn-primary btn-sm" href="{% url 'Compiler:create_task' %}" role="button">新任务</a> <br>
+<ul class="list-group">
+    {% for task in task_list %}
+    <li class="list-group-item"><a href="">{{ task.task_name }}</a> {{ task.created_date }} {{ task.modified_date }}
+    </li>
+
+    {% endfor %}
+</ul>
+
+{% endblock %}

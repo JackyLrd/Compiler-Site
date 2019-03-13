@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block title %}
+文件上传
+{% endblock %}
+
+{% block header %}
+<div class="jumbotron">
+    <h2>文件上传</h2>
+</div>
+{% endblock %}
+
+{% block content %}
+<form class="form" action="{% url 'Compiler:create_task' %} " method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% bootstrap_form create_task_form %}
+    <div id="uploaded-header-files">
+        Uploaded Header Files:
+    </div>
+    <div id="uploaded-source-files">
+        Uploaded Sources Files:
+    </div>
+    <button class="btn btn-primary btn-sm" type="submit">上传</button>
+    <input type="hidden" name='next' value="{% url 'Compiler:index' %}"/>
+</form>
+<script>
+    const headerFileUploader = document.getElementById("id_header_file");
+    const uploadedHeaderFiles = document.getElementById("uploaded-header-files");
+    const sourceFileUploader = document.getElementById("id_source_file");
+    const uploadedSourceFiles = document.getElementById("uploaded-source-files");
+    headerFileUploader.addEventListener("change", function(e) {
+        const files = e.target.files;
+        const filesList = [];
+        for (let file of files) {
+            filesList.push(file.name);
+        }
+        uploadedHeaderFiles.innerText = 'Uploaded Header Files:' + filesList.join(';');
+    });
+    sourceFileUploader.addEventListener("change", function(e) {
+        const files = e.target.files;
+        const filesList = [];
+        for (let file of files) {
+            filesList.push(file.name);
+        }
+        uploadedSourceFiles.innerText = 'Uploaded Source Files:' + filesList.join(';');
+    });
+
+
+</script>
+{% endblock %}

@@ -19,22 +19,22 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
+            {% if user.is_authenticated %}
             <li class="nav-item">
-                <a class="nav-link active" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link active" href="{% url 'Compiler:index' %}">Compiler</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="compiler/">Compiler</a>
-            </li>
+            {% else %}
+            {% endif %}
         </ul>
 
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav nav-right">
             {% if user.is_authenticated %}
             <li class="nav-item dropdown">
                 <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle" data-toggle="dropdown" href="#"
                    role="button">
                     {{ user.username }}<b class="caret"></b>
                 </a>
-                <div aria-labelledby="navbarDropdown" class="dropdown-menu" role="menu">
+                <div aria-labelledby="navbarDropdown" class="dropdown-menu" role="menu" style="right: 0; left: auto">
                     <a class="dropdown-item" href="{% url 'User:profile' %}">个人资料</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{% url 'User:change_password' %}">修改密码</a>
@@ -48,24 +48,16 @@
                    role="button">
                     登录<b class="caret"></b>
                 </a>
-                <div class="dropdown-menu">
+                <div class="dropdown-menu" style="right: 0; left: auto">
                     <form action="{% url 'index' %} " class="px-4 py-3" method="post">
                         {% csrf_token %}
                         {% bootstrap_form form %}
-                        <div class="form-group">
-                            <div class="form-check">
-                                <input class="form-check-input" id="dropdownCheck" type="checkbox">
-                                <label class="form-check-label" for="dropdownCheck">
-                                    记住我
-                                </label>
-                            </div>
-                        </div>
                         <button class="btn btn-primary" type="submit">登录</button>
                         <input name='next' type="hidden" value="{% url 'index' %}"/>
                     </form>
                     <div class="dropdown-divider"></div>
                     <p class="dropdown-item">如果你还没有注册，<a href="{% url 'User:register' %}">点击这里注册</a></p>
-                    <a class="dropdown-item" href="#">忘记密码？</a>
+                    <a aria-disabled="true" class="dropdown-item disabled" href="#" tabindex="-1">忘记密码？（未完成）</a>
                 </div>
             </li>
             {% endif %}
