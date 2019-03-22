@@ -1,8 +1,8 @@
 #include <iostream>
-
+#include "test.h"
 using namespace std;
 
-int main()
+void foo::func()
 {
-    cout << "Hello World!" << endl;
+    cout << a << " " << b << endl;
 }

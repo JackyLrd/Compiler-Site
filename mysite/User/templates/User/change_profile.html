@@ -2,12 +2,12 @@
 {% load bootstrap4 %}
 
 {% block title %}
-修改个人资料
+Compiler Site | 修改个人资料 - {{ user.username }}
 {% endblock %}
 
 {% block header %}
 <div class="jumbotron">
-    <h2>修改个人资料</h2>
+    <h2>修改个人资料 - {{ user.username }}</h2>
 </div>
 {% endblock %}
 
@@ -16,6 +16,8 @@
     {% csrf_token %}
     {% bootstrap_form change_profile_form %}
     <button class="btn btn-primary btn-sm" type="submit">提交</button>
+    <a class="btn btn-primary btn-sm" href="{% url 'User:profile' %}" role="button">取消</a>
     <input type="hidden" name='next' value="{% url 'User:profile' %}"/>
 </form>
+
 {% endblock %}

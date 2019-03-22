@@ -1,0 +1,4 @@
+2019-03-15 16:22:07,616 - compile_daemon - INFO - start to link ./1/3/obj/test.o
+2019-03-15 16:22:07,616 - compile_daemon - INFO - clang++ ./1/3/obj/test.o  -o 1/3/bin/target
+2019-03-15 16:22:07,711 - compile_daemon - INFO - ./1/3/obj/test.o  linked
+2019-03-15 16:22:07,711 - compile_daemon - INFO - compile succeeded

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block title %}
+Compiler Site | 修改成功
+{% endblock %}
+
+{% block header %}
+<div class="jumbotron">
+    <h2>修改任务成功！</h2>
+</div>
+{% endblock %}
+
+{% block content %}
+<p><span id="sp">5</span>秒后或<a href="{% url 'Compiler:index' %}">点击这里</a>跳转到编译器界面...</p>
+<script>
+    onload = function()
+    {
+        setInterval(go, 1000)
+    };
+    var x = 4;
+    function go()
+    {
+        if (x>=0)
+        {
+            document.getElementById("sp").innerText = x;
+        }
+        else
+        {
+            location.href = "/compiler";
+        }
+        x--;
+    }
+
+
+
+</script>
+{% endblock %}

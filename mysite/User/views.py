@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, reverse
+from django.contrib import messages
 
 from .forms import UserForm
 
@@ -35,6 +36,7 @@ def change_profile(request):
         if change_profile_form.is_valid():
             user = change_profile_form.save(commit=False)
             user.save()
+            messages.info(request, 'Your profile has been changed successfully!')
             return HttpResponseRedirect(reverse('User:profile'))
     else:
         change_profile_form = UserForm(instance=request.user)

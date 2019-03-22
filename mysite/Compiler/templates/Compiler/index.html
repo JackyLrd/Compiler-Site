@@ -2,7 +2,7 @@
 {% load bootstrap4 %}
 
 {% block title %}
-Compiler
+Compiler Site | Compiler
 {% endblock %}
 
 {% block header %}
@@ -15,10 +15,8 @@ Compiler
 <a class="btn btn-primary btn-sm" href="{% url 'Compiler:create_task' %}" role="button">新任务</a> <br>
 <ul class="list-group">
     {% for task in task_list %}
-    <li class="list-group-item"><a href="">{{ task.task_name }}</a> {{ task.created_date }} {{ task.modified_date }}
+    <li class="list-group-item"><a href="{% url 'Compiler:check_task' %}?task_id={{ task.id }}">{{ task.task_name }}</a> {{ task.created_date }} {{ task.modified_date }}
     </li>
-
     {% endfor %}
 </ul>
-
 {% endblock %}

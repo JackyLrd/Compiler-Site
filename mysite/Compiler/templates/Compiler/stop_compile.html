@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block title %}
+{% if is_running %}
+Compiler Site | 停止任务
+{% else %}
+Compiler Site | 任务未进行
+{% endif %}
+{% endblock %}
+
+{% block header %}
+<div class="jumbotron">
+    {% if is_running %}
+    <h2>停止任务成功！</h2>
+    {% else %}
+    <h2>任务未进行！</h2>
+    {% endif %}
+    
+</div>
+{% endblock %}
+
+{% block content %}
+<p><span id="sp">5</span>秒后或<a href="{% url 'Compiler:check_task' %}?task_id={{ task_id }}">点击这里</a>跳转到任务界面...</p>
+<script>
+    onload = function()
+    {
+        setInterval(go, 1000)
+    };
+    var x = 4;
+    function go()
+    {
+        if (x>=0)
+        {
+            document.getElementById("sp").innerText = x;
+        }
+        else
+        {
+            location.href = "{% url 'Compiler:check_task' %}?task_id={{ task_id }}";
+        }
+        x--;
+    }
+</script>
+{% endblock %}

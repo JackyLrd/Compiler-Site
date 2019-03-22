@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block title %}
+Compiler Site | 任务 - {{ task_name }}
+{% endblock %}
+
+{% block header %}
+<div class="jumbotron">
+    <h2>任务 - {{ task_name }}</h2>
+    <h2>
+        状态：
+        {% if is_running %}
+        进行中
+        {% else %}
+        不在进行中
+        {% endif %}
+    </h2>
+</div>
+{% endblock %}
+
+{% block content %}
+<a class="btn btn-primary btn-sm" href="{% url 'Compiler:start_compile' %}?task_id={{ task_id }}" role="button">开始编译</a>
+<a class="btn btn-primary btn-sm" href="{% url 'Compiler:stop_compile' %}?task_id={{ task_id }}" role="button">停止编译</a>
+<a class="btn btn-primary btn-sm" href="{% url 'Compiler:get_target' %}?task_id={{ task_id }}" role="button">下载目标文件</a>
+<button class="btn btn-primary btn-sm" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">编译日志</button>
+<div class="collapse" id="collapseExample">
+    <div class="jumbotron">
+        {% for output in compile_output %}
+        <li class="list-group-item">{{ output }}</li>
+        {% endfor %}
+    </div>
+</div>
+<div>
+    Uploaded Header Files:
+    <ul class="list-group">
+    {% for header_file in header_file_list %}
+        <li class="list-group-item">{{ header_file }}</li>
+    {% endfor %}
+    </ul>  
+    Uploaded Sources Files:
+    <ul class="list-group">
+    {% for src_file in src_file_list %}
+        <li class="list-group-item">{{ src_file }}</li>
+    {% endfor %}
+    </ul>  
+</div>
+<form class="form" action="{% url 'Compiler:check_task' %} " method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% bootstrap_form modify_task_form %}
+    <div id="uploaded-header-files">
+        Uploaded Header Files:
+    </div>
+    <div id="uploaded-source-files">
+        Uploaded Sources Files:
+    </div>
+    <button class="btn btn-primary btn-sm" type="submit">提交</button>
+    <input type="hidden" name='next' value="{% url 'Compiler:index' %}"/>
+    <input type="hidden" name='task_id' value="{{ task_id }}"/>
+    <a class="btn btn-primary btn-sm" href="{% url 'Compiler:index' %}" role="button">返回</a>
+</form>
+<script>
+    const headerFileUploader = document.getElementById("id_header_file");
+    const uploadedHeaderFiles = document.getElementById("uploaded-header-files");
+    const sourceFileUploader = document.getElementById("id_source_file");
+    const uploadedSourceFiles = document.getElementById("uploaded-source-files");
+    headerFileUploader.addEventListener("change", function(e) {
+        const files = e.target.files;
+        const filesList = [];
+        for (let file of files) {
+            filesList.push(file.name);
+        }
+        uploadedHeaderFiles.innerText = 'Uploaded Header Files:' + filesList.join(';');
+    });
+    sourceFileUploader.addEventListener("change", function(e) {
+        const files = e.target.files;
+        const filesList = [];
+        for (let file of files) {
+            filesList.push(file.name);
+        }
+        uploadedSourceFiles.innerText = 'Uploaded Source Files:' + filesList.join(';');
+    });
+</script>
+{% endblock %}

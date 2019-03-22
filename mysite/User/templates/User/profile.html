@@ -2,16 +2,25 @@
 {% load bootstrap4 %}
 
 {% block title %}
-个人资料
+Compiler Site | 个人资料 - {{ user.username }}
 {% endblock %}
 
 {% block header %}
 <div class="jumbotron">
-    <h2>我的资料</h2>
+    <h2>个人资料 - {{ user.username }}</h2>
 </div>
 {% endblock %}
 
 {% block content %}
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <div class="alert alert-success" role="alert">
+        {{ message }}
+    </div>
+    {% endfor %}
+</ul>
+{% endif %}
 <div>
     <ul class="list-group">
         <li class="list-group-item">用户名：{{ user.username }}</li>
