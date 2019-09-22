@@ -12,6 +12,7 @@ from .forms import UserForm
 
 def register(request):
     if request.method == 'POST':
+        login_form = AuthenticationForm()
         register_form = UserCreationForm(data=request.POST)
         if register_form.is_valid():
             user = register_form.save(commit=False)

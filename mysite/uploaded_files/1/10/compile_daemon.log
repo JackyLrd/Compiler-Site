@@ -1,0 +1,10 @@
+2019-09-22 23:59:43,113 - compile_daemon - INFO - start to compile main.cpp
+2019-09-22 23:59:43,114 - compile_daemon - INFO - clang++ -g -Wall -I /home/jacky/Desktop/my_project/mysite/uploaded_files/1/10/include  -c /home/jacky/Desktop/my_project/mysite/uploaded_files/1/10/src/main.cpp -o /home/jacky/Desktop/my_project/mysite/uploaded_files/1/10/obj/main.o
+2019-09-22 23:59:47,742 - compile_daemon - INFO - main.cpp compiled
+2019-09-22 23:59:47,743 - compile_daemon - INFO - start to compile test.cpp
+2019-09-22 23:59:47,743 - compile_daemon - INFO - clang++ -g -Wall -I /home/jacky/Desktop/my_project/mysite/uploaded_files/1/10/include  -c /home/jacky/Desktop/my_project/mysite/uploaded_files/1/10/src/test.cpp -o /home/jacky/Desktop/my_project/mysite/uploaded_files/1/10/obj/test.o
+2019-09-22 23:59:48,267 - compile_daemon - INFO - test.cpp compiled
+2019-09-22 23:59:48,274 - compile_daemon - INFO - start to link program
+2019-09-22 23:59:48,274 - compile_daemon - INFO - clang++ /home/jacky/Desktop/my_project/mysite/uploaded_files/1/10/obj/main.o /home/jacky/Desktop/my_project/mysite/uploaded_files/1/10/obj/test.o  -o /home/jacky/Desktop/my_project/mysite/uploaded_files/1/10/bin/target
+2019-09-22 23:59:48,518 - compile_daemon - INFO - program linked
+2019-09-22 23:59:48,519 - compile_daemon - INFO - compile succeeded
